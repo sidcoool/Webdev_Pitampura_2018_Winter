@@ -1,38 +1,133 @@
-
 window.onload = function () {
-  let tasklist = document.getElementById('tasklist')
-  let newtask = document.getElementById('newtask')
-  let addbtn = document.getElementById('addbtn')
+let tasklist = document.getElementById('tasklist')
+let newtask = document.getElementById('newtask')
+let addbtn = document.getElementById('addbtn')
+let sortbtn = document.getElementById('sortbtn')
+let clearbtn = document.getElementById('clearbtn')
 
-  function addNewTask () {
-    let newTaskValue = newtask.value
-    let newTaskListItem = document.createElement('li')
+function addNewTask() {
 
-    newTaskListItem.innerText = newTaskValue
-    newTaskListItem.className = "list-group-item"
-    newTaskListItem.onclick = function (e) {
-      console.log('hello')
-      if (e.target.className.indexOf('disabled') === -1) {
-        e.target.className = 'list-group-item disabled'
-      } else {
-        e.target.className = 'list-group-item'
+  
+  let newTaskValue = newtask.value
+  let newTaskListItem = document.createElement("li")
+  
+  newTaskListItem.className = "list-group-item list-group-item-info d-flex justify-content-between align-items-center"
+
+ 
+
+  let innerDiv1 = document.createElement("div")
+  innerDiv1.className = "btn-group"
+
+  let innerDiv20 = document.createElement("h5")
+  innerDiv20.innerText = newTaskValue  
+  innerDiv20.className = "disabledNot"
+
+  let innerDiv21  = document.createElement("div")
+  innerDiv21.className = "btn btn-secondary"
+  innerDiv21.id = "btn-done"
+  innerDiv21.style = "color: whitesmoke"
+  innerDiv21.innerText = "Done"
+
+  let innerDiv22  = document.createElement("div")
+
+  
+
+  innerDiv22.className = "btn"
+  innerDiv22.style = "background-color:coral; color: whitesmoke;"
+
+  innerDiv22.onmouseover = function(){
+    innerDiv22.style =  "background-color:#DC7632; color: whitesmoke;"
+  }
+
+ innerDiv22.onmouseout= function(){
+    innerDiv22.style =  "background-color:coral; color: whitesmoke;"
+  }
+
+  innerDiv22.innerText = "Delete"
+
+
+
+ innerDiv21.onclick = function () {
+      console.log("working");
+    
+      if ( innerDiv21.innerText  == "Done") {
+              innerDiv21.innerText = "Not Done"
+              innerDiv21.className = "btn btn-primary"
+              innerDiv20.className = "disabled"
+              newTaskListItem.className = "list-group-item list-group-item-light d-flex justify-content-between align-items-center"
+      }
+      else{
+        innerDiv21.innerText = "Done"
+        innerDiv21.className = "btn btn-secondary"
+        innerDiv20.className = "disabledNot"
+        newTaskListItem.className = "list-group-item list-group-item-info d-flex justify-content-between align-items-center"
       }
     }
 
+    innerDiv22.onclick = function(){
+      tasklist.removeChild(newTaskListItem)
+    }
+   
+  newTaskListItem.appendChild(innerDiv20)
+   innerDiv1.appendChild(innerDiv21)
+   innerDiv1.appendChild(innerDiv22)
+   newTaskListItem.appendChild(innerDiv1)
     tasklist.appendChild(newTaskListItem)
+    
     newtask.value = ""
   }
 
   newtask.addEventListener('keyup', function (ev) {
     if (ev.keyCode == 13) {
+     // idc += 1
       addNewTask()
     }
   })
 
 
   addbtn.onclick = function () {
+    //idc += 1
     addNewTask()
   }
 
 
+  sortbtn.onclick = function(){
+      console.log("step1")
+      let  i, switching, b, shouldSwitch;     
+      switching = true;
+  
+      while (switching) {
+        switching = false
+        b = tasklist.getElementsByTagName("li");
+     
+        for (i = 0; i < (b.length - 1); i++) {
+          shouldSwitch = false
+       
+          let elem1 = b[i].getElementsByTagName("h5")
+          let elem2 = b[i+1].getElementsByTagName("h5")
+
+          console.log(elem1[0])
+          console.log(elem2[0])
+
+          if (elem1[0].className < elem2[0].className) {
+            shouldSwitch = true
+            break
+          }
+        }
+
+        if (shouldSwitch){
+          b[i].parentNode.insertBefore(b[i+1], b[i])
+          switching = true
+
+        }
+      }
+    }
+
+    clearbtn.onclick = function(){
+      console.log("clearbtn working")
+      while (tasklist.firstChild) {
+        tasklist.removeChild(tasklist.firstChild);
+    }
+    }
+  
 }

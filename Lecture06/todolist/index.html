@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,28 +17,32 @@
   <script async defer src="js/todolist.js"></script>
 
 </head>
+
 <body>
-<h1 class="text-center my-4">Todo List</h1>
-<div class="container">
-  <div class="row">
-    <input
-      id="newtask"
-      placeholder="Write new task here"
-      type="text"
-      class="form-control col mx-2">
-    <button
-      id="addbtn"
-      class="btn btn-success col-4 mx-2">
-      Add Task
-    </button>
-  </div>
-  <div class="row">
-    <ul id="tasklist" class="list-group col mx-4 my-2">
-
-
-    </ul>
+    <div class="jumbotron jumbotron-fluid">
+  <h1 class="text-center my-4 display-4">Todo List</h1>
+  <div class="container">
+    <div class="row">
+      <input id="newtask" placeholder="Write new task here" type="text" class="form-control col mx-2 my-4">
+      <div class="btn-group my-4">
+        <button id="addbtn" class="btn btn-success  mx-1"> Add Task </button>
+        <button id="clearbtn" class="btn btn-danger  mx-1"> Clear </button>
+        <button id="sortbtn" class="btn btn-warning  mx-1">Sort </button>
+      </div>
+    </div>
+    <div class="row">
+      <ul id="tasklist" class="list-group col mx-4 my-2" type="none">
+        <!-- <li class="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
+            <h5>Do Homework</h5>
+           <div class="btn-group">
+           <div class="btn btn-secondary" id="btn-done" style="color:whitesmoke;">Not Done</div>
+           <div class="btn" style="background-color:coral; color: whitesmoke;">Delete</div>
+         </div>
+          </li> -->
+      </ul>
+    </div>
   </div>
 </div>
-
 </body>
+
 </html>
