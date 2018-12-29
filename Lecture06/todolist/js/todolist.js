@@ -91,37 +91,71 @@ function addNewTask() {
   }
 
 
-  sortbtn.onclick = function(){
-      console.log("step1")
-      let  i, switching, b, shouldSwitch;     
-      switching = true;
+  // sortbtn.onclick = function(){
+  //     console.log("step1")
+  //     let  i, switching, b, shouldSwitch;     
+  //     switching = true;
   
-      while (switching) {
-        switching = false
-        b = tasklist.getElementsByTagName("li");
+  //     while (switching) {
+  //       switching = false
+  //       b = tasklist.getElementsByTagName("li");
      
-        for (i = 0; i < (b.length - 1); i++) {
-          shouldSwitch = false
+  //       for (i = 0; i < (b.length - 1); i++) {
+  //         shouldSwitch = false
        
-          let elem1 = b[i].getElementsByTagName("h5")
-          let elem2 = b[i+1].getElementsByTagName("h5")
+  //         let elem1 = b[i].getElementsByTagName("h5")
+  //         let elem2 = b[i+1].getElementsByTagName("h5")
 
-          console.log(elem1[0])
-          console.log(elem2[0])
+  //         console.log(elem1[0])
+  //         console.log(elem2[0])
 
-          if (elem1[0].className < elem2[0].className) {
-            shouldSwitch = true
-            break
-          }
-        }
+  //         if (elem1[0].className < elem2[0].className) {
+  //           shouldSwitch = true
+  //           break
+  //         }
+  //       }
 
-        if (shouldSwitch){
-          b[i].parentNode.insertBefore(b[i+1], b[i])
-          switching = true
+  //       if (shouldSwitch){
+  //         b[i].parentNode.insertBefore(b[i+1], b[i])
+  //         switching = true
 
+  //       }
+  //     }
+  //   }
+
+
+
+
+
+  sortbtn.onclick = function(){
+    console.log("step1")
+    let  i, b, j  
+    b = tasklist.getElementsByTagName("li");
+      
+   
+      for (i = 1; i < (b.length); i++) {
+
+        j = i-1
+        // b = tasklist.getElementsByTagName("li")
+        let elem1 = b[i].getElementsByTagName("h5")
+        let elem2 = b[i-1].getElementsByTagName("h5")
+
+        // console.log(elem1[0].className)
+        // console.log(elem2[0].className)
+
+      while((elem1[0].className > elem2[0].className) && (j>=0) ){    
+          console.log(tasklist.insertBefore(b[j+1], b[j]))
+          j -=1
         }
       }
+
+      }
     }
+  
+
+
+
+
 
     clearbtn.onclick = function(){
       console.log("clearbtn working")
@@ -130,4 +164,3 @@ function addNewTask() {
     }
     }
   
-}
