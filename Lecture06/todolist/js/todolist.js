@@ -4,10 +4,9 @@ let newtask = document.getElementById('newtask')
 let addbtn = document.getElementById('addbtn')
 let sortbtn = document.getElementById('sortbtn')
 let clearbtn = document.getElementById('clearbtn')
+let idc = 0
 
 function addNewTask() {
-
-  
   let newTaskValue = newtask.value
   let newTaskListItem = document.createElement("li")
   
@@ -79,51 +78,16 @@ function addNewTask() {
 
   newtask.addEventListener('keyup', function (ev) {
     if (ev.keyCode == 13) {
-     // idc += 1
+      idc += 1
       addNewTask()
     }
   })
 
 
   addbtn.onclick = function () {
-    //idc += 1
+    idc += 1
     addNewTask()
   }
-
-
-  // sortbtn.onclick = function(){
-  //     console.log("step1")
-  //     let  i, switching, b, shouldSwitch;     
-  //     switching = true;
-  
-  //     while (switching) {
-  //       switching = false
-  //       b = tasklist.getElementsByTagName("li");
-     
-  //       for (i = 0; i < (b.length - 1); i++) {
-  //         shouldSwitch = false
-       
-  //         let elem1 = b[i].getElementsByTagName("h5")
-  //         let elem2 = b[i+1].getElementsByTagName("h5")
-
-  //         console.log(elem1[0])
-  //         console.log(elem2[0])
-
-  //         if (elem1[0].className < elem2[0].className) {
-  //           shouldSwitch = true
-  //           break
-  //         }
-  //       }
-
-  //       if (shouldSwitch){
-  //         b[i].parentNode.insertBefore(b[i+1], b[i])
-  //         switching = true
-
-  //       }
-  //     }
-  //   }
-
-
 
 
 
@@ -150,17 +114,25 @@ function addNewTask() {
       }
 
       }
-    }
+    
   
-
-
-
-
 
     clearbtn.onclick = function(){
       console.log("clearbtn working")
-      while (tasklist.firstChild) {
-        tasklist.removeChild(tasklist.firstChild);
+
+       let  b = tasklist.getElementsByTagName("li")
+
+       for (let i = 0; i <= idc; i++) {
+        let elem = b[i].getElementsByTagName("h5")[0]
+        // let elem2 = b[i].getElementsByTagName("h5")[0]
+
+        if(elem.className == "disabled"){
+          tasklist.removeChild(b[i])
+        }
+     }
+       
+       
     }
-    }
+    
   
+  }
