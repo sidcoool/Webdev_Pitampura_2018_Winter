@@ -5,6 +5,10 @@ window.onload = function () {
     let sortbtn = document.getElementById('sortbtn')
     let clearbtn = document.getElementById('clearbtn')
     tasks = [ ]
+    // if(localStorage.list){
+    //     tasks = JSON.parse(localStorage.list)
+    // }
+
 
     let add = function(){
         tasks.push({
@@ -16,33 +20,62 @@ window.onload = function () {
     }
 
     let displayList = function(){
+        // localStorage.list = JSON.stringify(tasks)
         tasklist.innerHTML = ""
         for (let i in tasks) {
-            console.log("no of times")
-            console.log(i)
+            // console.log("no of times")
+            // console.log(i)
             let listItem = document.createElement("li")
         listItem.className = "list-group-item list-group-item-info d-flex justify-content-between align-items-center"
 
         let h5Element = document.createElement("h5")
+        
         h5Element.className = tasks[i].y 
         h5Element.innerText = tasks[i].x
 
        let  btnGroupElement = document.createElement("div")
         btnGroupElement.className = "btn-group"
 
+       
+        let up = document.createElement("i")
+        up.className = "fas fa-arrow-up fa-2x mx-3"
+        up.id = "up"
+        
+
+        
+        let down = document.createElement("i")
+        down.className = "fas fa-arrow-down fa-2x mx-3"
+        down.id = "down"
+        
+
         let doneBtn = document.createElement("div")
         doneBtn.className = "btn btn-secondary"
         doneBtn.id = "btn-done"
         doneBtn.style = "color: whitesmoke;"
-        if(tasks[i].y == "notDisabled")
+        if(tasks[i].y == "notDisabled"){
         doneBtn.innerText = "Done"
-        else
+        doneBtn.className = "btn btn-secondary"
+        listItem.className = "list-group-item list-group-item-info d-flex justify-content-between align-items-center"
+        }
+        else{
         doneBtn.innerText = "Not Done"
+        doneBtn.className = "btn btn-primary"
+        listItem.className = "list-group-item  d-flex justify-content-between align-items-center"
+        }
+
 
         let deleteBtn = document.createElement("div")
         deleteBtn.className = "btn"
         deleteBtn.style = "background-color:coral; color: #f5f5f5;"
         deleteBtn.innerText = "Delete"
+
+        deleteBtn.onmouseover = function(){
+            deleteBtn.style =  "background-color:#DC7632; color: whitesmoke;"
+          }
+
+        deleteBtn.onmouseout= function(){
+            deleteBtn.style =  "background-color:coral; color: whitesmoke;"
+          }
         
        doneBtn.onclick = function(){
            if(tasks[i].y == "disabled")
@@ -57,7 +90,27 @@ window.onload = function () {
            displayList()
        }
 
+       up.onclick = function(){
+        [ tasks[i], tasks[i-1] ] = [ tasks[i-1], tasks[i] ]
+        displayList()
+       }
 
+      down.onclick = function(){
+           let j = parseInt(i)  
+           j = j+1
+        let a = tasks[i]
+        tasks[i] = tasks[j]
+        tasks[j] = a
+     displayList()
+    }
+
+
+       if(i != 0){
+        btnGroupElement.appendChild(up)
+       }
+        if(i != tasks.length-1){
+        btnGroupElement.appendChild(down)
+        }
         btnGroupElement.appendChild(doneBtn)
         btnGroupElement.appendChild(deleteBtn)
         listItem.appendChild(h5Element)
@@ -65,7 +118,9 @@ window.onload = function () {
         tasklist.appendChild(listItem)
         }
     }
-
+    
+    displayList()
+    
     addbtn.onclick = function(){
         add()
     }
@@ -75,12 +130,25 @@ window.onload = function () {
         add()
     })
 
-    sortbtn.onclick = function(){
-        tasks.sort(function(a, b){
-            return a.y < b.y ? 1 : -1
-        })
-        displayList()
+function sorter(){
+  
+    for (let k=1; k<tasks.length; k++) {
+        let j = k-1
+        while( (j>-1) && (tasks[k].y   > tasks[j].y)){  
+         let a = tasks[j]
+         tasks[j] = tasks[k]
+         tasks[k] = a
+          j -=1
+          console.log(j)
+          console.log(k)
+        }
     }
+}
+    sortbtn.onclick = function(){
+        sorter()
+        displayList() 
+    }
+
 
         clearbtn.onclick = function(){
         tasks =  tasks.filter(function(t){
@@ -90,5 +158,4 @@ window.onload = function () {
         displayList()
     }
 
-    // addbtn.onclick = add()
 }
