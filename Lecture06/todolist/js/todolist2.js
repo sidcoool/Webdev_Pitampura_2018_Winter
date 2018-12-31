@@ -5,9 +5,9 @@ window.onload = function () {
     let sortbtn = document.getElementById('sortbtn')
     let clearbtn = document.getElementById('clearbtn')
     tasks = [ ]
-    // if(localStorage.list){
-    //     tasks = JSON.parse(localStorage.list)
-    // }
+    if(localStorage.list){
+        tasks = JSON.parse(localStorage.list)
+    }
 
 
     let add = function(){
@@ -20,11 +20,9 @@ window.onload = function () {
     }
 
     let displayList = function(){
-        // localStorage.list = JSON.stringify(tasks)
+        localStorage.list = JSON.stringify(tasks)
         tasklist.innerHTML = ""
         for (let i in tasks) {
-            // console.log("no of times")
-            // console.log(i)
             let listItem = document.createElement("li")
         listItem.className = "list-group-item list-group-item-info d-flex justify-content-between align-items-center"
 
