@@ -64,6 +64,7 @@ function addNewTask() {
     }
 
     innerDiv22.onclick = function(){
+      idc -= 1
       tasklist.removeChild(newTaskListItem)
     }
    
@@ -124,9 +125,9 @@ function addNewTask() {
 
        for (let i = 0; i <= idc; i++) {
         let elem = b[i].getElementsByTagName("h5")[0]
-        // let elem2 = b[i].getElementsByTagName("h5")[0]
 
         if(elem.className == "disabled"){
+          
           tasklist.removeChild(b[i])
         }
      }
