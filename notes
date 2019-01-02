@@ -1,1 +1,6 @@
 different  functions(external browser's api's) runs  asynchronously
+
+jQuery == $  //true
+window.onload = function(){  ...  } == $(function{   ...   })
+
+Arnav Bhaiya Email ID = a@cb.lk
