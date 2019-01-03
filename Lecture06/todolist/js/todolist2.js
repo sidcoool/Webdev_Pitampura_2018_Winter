@@ -1,4 +1,4 @@
-window.onload = function () {
+    window.onload = function () {
     let tasklist = document.getElementById('tasklist')
     let newtask = document.getElementById('newtask')
     let addbtn = document.getElementById('addbtn')
@@ -132,7 +132,7 @@ function sorter(){
   
     for (let k=1; k<tasks.length; k++) {
         let j = k-1
-        while( (j>-1) && (tasks[k].y   > tasks[j].y)){  
+        while( (j>0) && (tasks[k].y   > tasks[j].y)){  
          let a = tasks[j]
          tasks[j] = tasks[k]
          tasks[k] = a
