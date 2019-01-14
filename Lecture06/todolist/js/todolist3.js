@@ -15,8 +15,6 @@ $(() =>{
        //console.log(tasks)
     }
 
-
-
     function displayList(){
        // console.log("displayList function working")
         localStorage.list = JSON.stringify(tasks)
@@ -37,7 +35,7 @@ $(() =>{
                     $("<i>")
                     .attr("class", (i != 0) ? "fas fa-arrow-up fa-2x mx-2" : "")
                     .click(()=>{
-                        tasks.splice(i-1,1, ...tasks.splice(i,1,tasks[i-1]))
+                        tasks.splice(i-1,1, ...tasks.splice(i,1,tasks[i-1]))   //used rest and spread
                         displayList()
                     })
                 )

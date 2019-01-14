@@ -4,3 +4,24 @@ jQuery == $  //true
 window.onload = function(){  ...  } == $(function{   ...   })
 
 Arnav Bhaiya Email ID = a@cb.lk
+
+bash, zsh, fish, dash
+
+streams and buffers
+
+\r => carriage return, return to first character in the same line
+
+`hello ${name}` == "hello" + name
+
+localhost: portNumber
+/?data=10
+
+console.log(arguments)
+
+hbs is superset of html
+
+let functions should be defined before using
+
+if we do not use let or var functions are hoisted at top
+
+.then wali chees await se return mai aa jata hai

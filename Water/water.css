@@ -1,0 +1,17 @@
+body{
+    font-size: 18px;
+}
+
+.bucket{
+    display: none;
+}
+
+.ques{
+    background-color: rgb(192, 208, 226);
+    font-weight: bold;
+    border-radius: 25px !important;
+}
+
+#usage{
+    display: none;
+}
