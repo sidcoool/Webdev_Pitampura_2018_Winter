@@ -22,6 +22,6 @@ hbs is superset of html
 
 let functions should be defined before using
 
-if we do not use let or var functions are hoisted at top
+if we do not use let or var to declare functions, they are hoisted at top
 
 .then wali chees await se return mai aa jata hai
